@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Story Peddler</title>
+    <link rel="stylesheet" href="style.css">
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <p class="nav-link">Create:</p>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" id="new-story-button">Add new story</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" id="new-character-button">Add new character</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary" id="new-pp-button">Add new plot point</button>
+          </li>
+          <div class="form-group">
+            <select class="custom-select" id="story-list">
+              <option selected="">Select a story to work on</option>
+            </select>
+          </div>
+          </div>
+        </ul>
+      </div>
+    </nav>
+    
+    <blockquote class="blockquote text-center">
+      <h1 class="mb-0">Story Peddler</h1>
+      <footer class="blockquote-footer">A digital board for organizing projects, characters, and plots.</footer>
+    </blockquote>
+
+    <form id="new-story-form" hidden="">
+      <fieldset>
+        <legend>Add a new story</legend>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="titleInput">
+        </div>
+        <div class="form-group">
+          <label for="summary">Summary</label>
+          <textarea class="form-control" id="summaryInput" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="genre">Genre</label>
+          <input type="text" class="form-control" id="genreInput">
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-new-story">Submit</button>
+      </fieldset>
+    </form>
+
+    <form id="new-character-form" hidden="">
+      <fieldset>
+        <legend>Add new character</legend>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" class="form-control" id="new-character-name">
+        </div>
+        <div class="form-group">
+          <label for="exampleTextarea">Description</label>
+          <textarea class="form-control" id="new-character-description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+        <label for="storySelect">Story</label>
+        <select class="custom-select" name="story_id" id="story-dropdown">
+          <option value="1">Option 1</option>
+        </select><br>
+        <div>
+        <button type="submit" class="btn btn-primary" id="submit-new-character">Submit</button>
+      </fieldset>
+    </form>
+
+    <form id="new-pp-form" hidden="">
+      <fieldset>
+        <legend>Add new plot point</legend>
+        <div class="form-group">
+          <label for="exampleTextarea">Description</label>
+          <textarea class="form-control" id="new-pp-description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-new-pp">Submit</button>
+      </fieldset>
+    </form>
+
+    <div class="jumbotron">
+      <h1 class="display-3" id="storyTitle">Story title</h1>
+      <h5 class="lead" id="storySummary">Story summary</h5>
+      <hr class="my-4">
+      <p id="storyCharacters">Characters here</p>
+      <hr class="my-4">
+      <p class="lead">
+        <div class="list-group">
+          <li class="list-group-item list-group-item-action active">Test list for drag and drop</li>
+          <li class="list-group-item list-group-item-action" draggable="true" id="sortable1" ondragover="dragOver(event)" ondragstart="dragStart(event)">One</li>
+          <li class="list-group-item list-group-item-action" draggable="true" id="sortable2" ondragover="dragOver(event)" ondragstart="dragStart(event)">Two</li>
+          <li class="list-group-item list-group-item-action" draggable="true" id="sortable3" ondragover="dragOver(event)" ondragstart="dragStart(event)">Three</li>
+        </div>
+      </p>
+    </div>
+
+    <!-- <script type="text/javascript" src="node_modules/html5sortable/dist/html5sortable.js"></script> -->
+    <script type="text/javascript" src="src/storyAPI.js"></script>
+    <script type="text/javascript" src="src/story.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>
