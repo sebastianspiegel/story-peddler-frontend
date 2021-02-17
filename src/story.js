@@ -17,5 +17,12 @@ class Story{
         option.innerText = this.title
         mainDropdown.append(option)
     }
+
+    showStory(){
+        document.querySelector('.jumbotron').removeAttribute('hidden')
+        document.querySelector('#storyTitle').innerText = this.title
+        document.querySelector('#storySummary').innerText = this.summary
+        document.querySelector('#storyGenre').innerText = this.genre
+    }
 }
 

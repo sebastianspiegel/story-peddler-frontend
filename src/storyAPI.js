@@ -39,6 +39,7 @@ class StoryApi {
         .then(json => {
             const s = new Story({id: json.data.id, ...json.data.attributes})
             s.addToMainDropdown()
+            s.showStory()
         })
     }
 
