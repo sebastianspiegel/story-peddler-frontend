@@ -1,17 +1,20 @@
 class StoryApi {
 
-    // constructor(port){
-    //     this.baseURL = '${port}/stories'
-    // }
+    constructor(port){
+        this.baseURL = `${port}/stories`
+    }
 
     getStories(){
+        // fetch(this.baseURL)
         fetch('http://localhost:3000/stories')
         .then(resp => resp.json())
         .then(json => {
             json["data"].forEach(element => {
-                console.log(element)
+                // console.log(element)
                 const s = new Story({id: element.id, ...element.attributes})
-                s.addToMainDropdown()
+                s.addToDropDown('#story-list')
+                s.addToDropDown('#characterStoryInput')
+                s.addToDropDown('#ppStoryInput')
             })
         })
     }
@@ -38,7 +41,9 @@ class StoryApi {
         .then(r => r.json())
         .then(json => {
             const s = new Story({id: json.data.id, ...json.data.attributes})
-            s.addToMainDropdown()
+            s.addToDropDown('#story-list')
+            s.addToDropDown('#characterStoryInput')
+            s.addToDropDown('#ppStoryInput')
             s.showStory()
         })
     }

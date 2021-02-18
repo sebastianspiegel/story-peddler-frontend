@@ -10,12 +10,12 @@ class Story{
         Story.all.push(this)
     }
 
-    addToMainDropdown(){
-        const mainDropdown = document.querySelector('#story-list')
+    addToDropDown(elementID){
+        const dropdown = document.querySelector(elementID)
         const option = document.createElement('option')
         option.value = this.id
         option.innerText = this.title
-        mainDropdown.append(option)
+        dropdown.append(option)
     }
 
     showStory(){
