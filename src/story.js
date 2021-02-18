@@ -102,7 +102,8 @@ class Story{
     }
 
     deleteStory(){
-        console.log('in the delete funciton')
+        // console.log('in the delete funciton:', this.id)
+        storyApi.deleteStory(this.id)
     }
 
 }

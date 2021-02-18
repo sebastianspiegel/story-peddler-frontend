@@ -71,4 +71,20 @@ class StoryApi {
         .then(json => console.log(json))
     }
 
+    deleteStory = (id) => {
+
+        const configObj = {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        }
+
+        console.log(`${this.baseURL}/${id}`, configObj)
+        fetch(`${this.baseURL}/${id}`, configObj)
+            .then(resp => resp.json())
+            .then(json => console.log(json))
+    }
+
 }
