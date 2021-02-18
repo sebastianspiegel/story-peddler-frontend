@@ -5,16 +5,18 @@ class StoryApi {
     }
 
     getStories(){
-        // fetch(this.baseURL)
-        fetch('http://localhost:3000/stories')
+        fetch(this.baseURL)
+        console.log(this.baseURL)
+        console.log(port)
+        // fetch('http://localhost:3000/stories')
         .then(resp => resp.json())
         .then(json => {
             json["data"].forEach(element => {
                 // console.log(element)
                 const s = new Story({id: element.id, ...element.attributes})
-                s.addToDropDown('#story-list')
                 s.addToDropDown('#characterStoryInput')
                 s.addToDropDown('#ppStoryInput')
+                s.addToDropDown('#story-list')
             })
         })
     }
