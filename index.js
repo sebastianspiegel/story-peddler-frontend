@@ -42,10 +42,9 @@ function handleStorySubmit(story){
 function handleCharacterSubmit(character){
     character.preventDefault();
     newCharacterForm.setAttribute('hidden', '');
-    console.log(character)
-    characterApi.createCharacter();
+    // console.log(character)
+    characterApi.createCharacter()
     character.target.reset();
 }
 
 storyApi.getStories();
-// characterApi.getCharacters(); 

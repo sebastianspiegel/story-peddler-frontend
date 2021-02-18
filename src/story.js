@@ -33,6 +33,7 @@ class Story{
     showStory(){
         document.querySelector('.jumbotron').removeAttribute('hidden')
         document.querySelector('#storyTitle').innerText = this.title
+        document.querySelector('#storyTitle').dataset.id = this.id 
         document.querySelector('#storySummary').innerText = this.summary
         document.querySelector('#storyGenre').innerText = this.genre
         document.querySelector('#storyCharacters').innerHTML = ""

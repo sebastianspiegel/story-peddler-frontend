@@ -11,7 +11,7 @@ class CharacterApi {
             json["data"].forEach(element => {
                 const c = new Character({id: element.id, ...element.attributes})
                 if(c.story_id === parseInt(storyId)){
-                    console.log(c)
+                    // console.log(c)
                     c.showCharacters()
                 }
             })
@@ -38,9 +38,11 @@ class CharacterApi {
         .then(resp => resp.json())
         .then(json => {
             const c = new Character({id: json.data.id, ...json.data.attributes})
-            // if(document.querySelector('#storyTitle') === c.story_id){
-            //     c.showCharacters()
-            // }
+            // console.log("display story id:", document.querySelector('#storyTitle').dataset.id)
+            // console.log("new character story id:", c.story_id)
+            if(parseInt(document.querySelector('#storyTitle').dataset.id) === c.story_id){ 
+                c.showCharacters()
+            }
         })
     }
 
