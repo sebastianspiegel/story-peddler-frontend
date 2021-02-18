@@ -17,18 +17,17 @@ class Story{
         option.id = this.id
         option.innerText = this.title
         dropdown.append(option)
-        if (dropdown.id === 'story-list') {
-            dropdown.addEventListener('change', this.handleStorySelect)
-        }
     }
 
-    handleStorySelect = (event) => {
-        let storyId = event.target.value
-        for(const story of Story.all){
-            if(story.id === storyId){
-                story.showStory()
+    static addEL(){
+        document.querySelector('#story-list').addEventListener('change', event => {
+            let storyId = event.target.value
+            for(const story of Story.all){
+                if(story.id === storyId){
+                    story.showStory()
+                }
             }
-        }
+        })
     }
 
     showStory(){
@@ -36,6 +35,8 @@ class Story{
         document.querySelector('#storyTitle').innerText = this.title
         document.querySelector('#storySummary').innerText = this.summary
         document.querySelector('#storyGenre').innerText = this.genre
+        document.querySelector('#storyCharacters').innerHTML = ""
+        characterApi.getCharacters(this.id); 
     }
 }
 

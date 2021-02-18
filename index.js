@@ -1,6 +1,7 @@
 const port = `http://localhost:3000`
 
-const storyApi =  new StoryApi()
+const storyApi =  new StoryApi(port)
+const characterApi = new CharacterApi(port)
 
 const newStory = document.querySelector('#new-story-button');
 const newStoryForm = document.querySelector('#new-story-form')
@@ -42,19 +43,9 @@ function handleCharacterSubmit(character){
     character.preventDefault();
     newCharacterForm.setAttribute('hidden', '');
     console.log(character)
-    // characterApi.createCharacter();
-    // character.target.reset();
-}
-
-// move into characterapi
-function getCharacters(){
-    fetch('http://localhost:3000/characters')
-    .then(resp => resp.json())
-    .then(json => {
-        console.log(json)
-    })
+    characterApi.createCharacter();
+    character.target.reset();
 }
 
 storyApi.getStories();
-getCharacters(); 
-// characterAPI.getCharacters();
+// characterApi.getCharacters(); 

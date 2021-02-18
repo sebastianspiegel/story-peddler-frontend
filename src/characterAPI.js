@@ -4,11 +4,17 @@ class CharacterApi {
         this.baseURL = `${port}/characters`
     }
 
-    getCharacters(){
-        fetch('http://localhost:3000/characters')
+    getCharacters(storyId){
+        fetch(this.baseURL)
         .then(resp => resp.json())
         .then(json => {
-            console.log(json)
+            json["data"].forEach(element => {
+                const c = new Character({id: element.id, ...element.attributes})
+                if(c.story_id === parseInt(storyId)){
+                    console.log(c)
+                    c.showCharacters()
+                }
+            })
         })
     }
 
@@ -28,10 +34,13 @@ class CharacterApi {
             body: JSON.stringify(characterInfo)
         }
 
-        fetch('http://localhost:3000/characters', configObj)
+        fetch(this.baseURL, configObj)
         .then(resp => resp.json())
         .then(json => {
             const c = new Character({id: json.data.id, ...json.data.attributes})
+            // if(document.querySelector('#storyTitle') === c.story_id){
+            //     c.showCharacters()
+            // }
         })
     }
 
