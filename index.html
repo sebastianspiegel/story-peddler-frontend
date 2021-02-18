@@ -93,23 +93,28 @@
     </form>
 
     <div class="jumbotron" hidden="">
-      <h1 class="display-3" id="storyTitle"></h1>
-      <h6 class="lead" id="storyGenre"></h6>
-      <hr class="my-4">
-      <h5 class="lead" id="storySummary"></h5>
-      <hr class="my-4">
+      <div class="storyInfo">
+      <!-- <h1 type="text" class="display-3" id="storyTitle"></h1> -->
+      <!-- <h6 class="lead" id="storyGenre"></h6> -->
+      <!-- <hr class="my-4"> -->
+      <!-- <h5 class="lead" id="storySummary"></h5> -->
+      <!-- <hr class="my-4"> -->
+    </div>
       <p>Characters:</p>
       <ul class="list-group" id="storyCharacters">
       </ul>
       <hr class="my-4">
       <p class="lead">
-        <div class="list-group">
+        <div class="list-group" hidden="">
           <li class="list-group-item list-group-item-action active">Test list for drag and drop</li>
           <li class="list-group-item list-group-item-action" draggable="true" id="sortable1" ondragover="dragOver(event)" ondragstart="dragStart(event)">One</li>
           <li class="list-group-item list-group-item-action" draggable="true" id="sortable2" ondragover="dragOver(event)" ondragstart="dragStart(event)">Two</li>
           <li class="list-group-item list-group-item-action" draggable="true" id="sortable3" ondragover="dragOver(event)" ondragstart="dragStart(event)">Three</li>
         </div>
       </p>
+      <button type="button" class="btn btn-outline-primary" id="editButton">Edit</button>
+      <button type="button" class="btn btn-outline-success" id="saveButton" hidden="">Save</button>
+      <button type="button" class="btn btn-outline-danger" id="deleteButton">Delete</button>
     </div>
 
     <!-- <script type="text/javascript" src="node_modules/html5sortable/dist/html5sortable.js"></script> -->

@@ -48,4 +48,27 @@ class StoryApi {
         })
     }
 
+    sendPatch = (story) => {
+        console.log(story)
+        let {title, genre, summary} = story
+        const storyInfo = {
+            title,
+            genre,
+            summary
+        }
+
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(storyInfo)
+        }
+
+        fetch(`${this.baseURL}/${story.id}`, configObj)
+        .then(resp => resp.json())
+        .then(json => console.log(json))
+    }
+
 }
