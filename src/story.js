@@ -100,7 +100,9 @@ class Story{
         deleteButton.innerText = "Delete"
         buttons.append(deleteButton)
         deleteButton.addEventListener('click', () => {
-            this.deleteStory();
+            if (window.confirm("Are you sure you want to delete this story and all related characters?")){
+                this.deleteStory();
+            }
         })
     }
 

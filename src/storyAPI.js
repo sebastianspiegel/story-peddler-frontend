@@ -40,16 +40,19 @@ class StoryApi {
         fetch(this.baseURL, configObj)
         .then(r => r.json())
         .then(json => {
-            const s = new Story({id: json.data.id, ...json.data.attributes})
-            s.addToDropDown('#story-list')
-            s.addToDropDown('#characterStoryInput')
-            s.addToDropDown('#ppStoryInput')
-            s.showStory()
+            if(json.message){
+                alert(json.message)
+            } else {
+                const s = new Story({id: json.data.id, ...json.data.attributes})
+                s.addToDropDown('#story-list')
+                s.addToDropDown('#characterStoryInput')
+                s.addToDropDown('#ppStoryInput')
+                s.showStory()
+            }
         })
     }
 
     sendPatch = (story) => {
-        console.log(story)
         let {title, genre, summary} = story
         const storyInfo = {
             title,
@@ -68,7 +71,11 @@ class StoryApi {
 
         fetch(`${this.baseURL}/${story.id}`, configObj)
         .then(resp => resp.json())
-        .then(json => console.log(json))
+        .then(json => {
+            if(json.message){
+                alert(json.message)
+            }
+        })
     }
 
     deleteStory = (id) => {
@@ -81,7 +88,7 @@ class StoryApi {
             }
         }
 
-        console.log(`${this.baseURL}/${id}`, configObj)
+        // console.log(`${this.baseURL}/${id}`, configObj)
         fetch(`${this.baseURL}/${id}`, configObj)
             .then(resp => resp.json())
             .then(json => alert(json.message))

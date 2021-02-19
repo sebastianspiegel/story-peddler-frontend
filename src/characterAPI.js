@@ -13,6 +13,7 @@ class CharacterApi {
                 if(c.story_id === parseInt(storyId)){
                     // console.log(c)
                     c.showCharacters()
+                    c.characterButtons()
                 }
             })
         })
@@ -37,13 +38,57 @@ class CharacterApi {
         fetch(this.baseURL, configObj)
         .then(resp => resp.json())
         .then(json => {
-            const c = new Character({id: json.data.id, ...json.data.attributes})
-            // console.log("display story id:", document.querySelector('#storyTitle').dataset.id)
-            // console.log("new character story id:", c.story_id)
-            if(parseInt(document.querySelector('#storyTitle').dataset.id) === c.story_id){ 
-                c.showCharacters()
+            if(json.message){
+                alert(json.message)
+            } else {
+                const c = new Character({id: json.data.id, ...json.data.attributes})
+                if(parseInt(document.querySelector('#storyTitle').dataset.id) === c.story_id){ 
+                    c.showCharacters()
+                    c.characterButtons()
+                }
             }
         })
+    }
+
+    sendPatch = (character) => {
+        let {name, description, story_id} = character
+        const characterInfo = {
+            name,
+            description,
+            story_id
+        }
+        // debugger
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(characterInfo)
+        }
+
+        fetch(`${this.baseURL}/${character.id}`, configObj)
+        .then(resp => resp.json())
+        .then(json => {
+            if(json.message){
+                alert(json.message)
+            } 
+        })
+    }
+
+    deleteCharacter = (id) => {
+
+        const configObj = {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        }
+
+        fetch(`${this.baseURL}/${id}`, configObj)
+        .then(resp => resp.json())
+        .then(json => alert(json.message))
     }
 
 }
