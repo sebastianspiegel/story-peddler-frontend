@@ -14,11 +14,12 @@ class Story{
         const dropdown = document.querySelector(elementID)
         const option = document.createElement('option')
         option.value = this.id
-        option.id = this.id
+        option.id = this.title
         option.innerText = this.title
         dropdown.append(option)
     }
 
+    // nav bar select story
     static addEL(){
         document.querySelector('#story-list').addEventListener('change', event => {
             let storyId = event.target.value
@@ -31,6 +32,7 @@ class Story{
     }
 
     showStory(){
+        //MAKE SEPERATE FUNCTIONS 
         jumbotron.removeAttribute('hidden')
         let lineBreak1 = document.createElement('hr')
         lineBreak1.className = "my-4"
@@ -66,9 +68,37 @@ class Story{
         document.querySelector('#storyCharacters').innerHTML = ""
         characterApi.getCharacters(this.id); 
 
+        this.addButtons();
+    }
+
+    addButtons(){
+        buttons.innerHTML = ""
+
+        let editButton = document.createElement('button')
+        editButton.className = "btn btn-outline-primary"
+        editButton.id = "editButton"
+        editButton.type = "button"
+        editButton.innerText = "Edit"
+        buttons.append(editButton)
         editButton.addEventListener('click', () => {
             this.editStory();
         })
+
+        let saveButton = document.createElement('button')
+        saveButton.className = "btn btn-outline-success"
+        saveButton.id = "saveButton"
+        saveButton.type = "button"
+        saveButton.innerText = "Save"
+        saveButton.setAttribute('hidden', '')
+        buttons.append(saveButton)
+
+
+        let deleteButton = document.createElement('button')
+        deleteButton.className = "btn btn-outline-danger"
+        deleteButton.id = "deleteButton"
+        deleteButton.type = "button"
+        deleteButton.innerText = "Delete"
+        buttons.append(deleteButton)
         deleteButton.addEventListener('click', () => {
             this.deleteStory();
         })
@@ -94,16 +124,31 @@ class Story{
         this.title = title
         this.genre = genre
         this.summary = summary
-        editButton.removeAttribute('hidden')
-        saveButton.setAttribute('hidden', '')
+        editButton.parentNode.removeChild(editButton)
+        deleteButton.parentNode.removeChild(deleteButton)
+        saveButton.parentNode.removeChild(saveButton)
         storyApi.sendPatch(this)
         this.showStory()
     }
 
     deleteStory(){
-        // console.log('in the delete funciton:', this.id)
         storyApi.deleteStory(this.id)
         jumbotron.setAttribute('hidden', '')
+        document.querySelector('.storyInfo').innerHTML = ""
+
+        this.removeFromDropdown('#story-list')
+        this.removeFromDropdown('#characterStoryInput')
+        this.removeFromDropdown('#ppStoryInput')
+
+    }
+
+    removeFromDropdown(elementID){
+        let dropdown = document.querySelector(elementID)
+        for (let i = 0; dropdown.options.length > i; i++) {
+            if(dropdown.options[i].id === this.title){
+                dropdown.remove(i)
+            }
+        }
     }
 
 }

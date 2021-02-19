@@ -70,6 +70,7 @@
         <div class="form-group">
           <label for="storySelect">Story</label>
           <select class="custom-select" name="story_id" id="characterStoryInput">
+            <option selected="">Select a story</option>
           </select><br>
         </div>
         <button type="submit" class="btn btn-primary" id="submit-new-character">Submit</button>
@@ -86,6 +87,7 @@
         <div class="form-group">
           <label for="storySelect">Story</label>
           <select class="custom-select" name="story_id" id="ppStoryInput">
+            <option selected="">Select a story</option>
           </select><br>
         </div>
         <button type="submit" class="btn btn-primary" id="submit-new-pp">Submit</button>
@@ -112,9 +114,7 @@
           <li class="list-group-item list-group-item-action" draggable="true" id="sortable3" ondragover="dragOver(event)" ondragstart="dragStart(event)">Three</li>
         </div>
       </p>
-      <button type="button" class="btn btn-outline-primary" id="editButton">Edit</button>
-      <button type="button" class="btn btn-outline-success" id="saveButton" hidden="">Save</button>
-      <button type="button" class="btn btn-outline-danger" id="deleteButton">Delete</button>
+      <div class="buttons"></div>
     </div>
 
     <!-- <script type="text/javascript" src="node_modules/html5sortable/dist/html5sortable.js"></script> -->

@@ -9,11 +9,8 @@ const newCharacter = document.querySelector('#new-character-button');
 const newCharacterForm = document.querySelector('#new-character-form')
 const newPP = document.querySelector('#new-pp-button')
 
-const editButton = document.querySelector('#editButton')
-const saveButton = document.querySelector('#saveButton')
-const deleteButton = document.querySelector('#deleteButton')
-
 const jumbotron = document.querySelector('.jumbotron')
+const buttons = document.querySelector('.buttons')
 
 newStory.addEventListener('click', () => {
     document.querySelector('#new-story-form').removeAttribute('hidden')
