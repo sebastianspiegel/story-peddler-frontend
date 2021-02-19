@@ -31,7 +31,6 @@ class Story{
     }
 
     showStory(){
-        let jumbotron = document.querySelector('.jumbotron')
         jumbotron.removeAttribute('hidden')
         let lineBreak1 = document.createElement('hr')
         lineBreak1.className = "my-4"
@@ -104,6 +103,7 @@ class Story{
     deleteStory(){
         // console.log('in the delete funciton:', this.id)
         storyApi.deleteStory(this.id)
+        jumbotron.setAttribute('hidden', '')
     }
 
 }

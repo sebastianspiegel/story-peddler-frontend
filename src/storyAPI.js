@@ -84,7 +84,7 @@ class StoryApi {
         console.log(`${this.baseURL}/${id}`, configObj)
         fetch(`${this.baseURL}/${id}`, configObj)
             .then(resp => resp.json())
-            .then(json => console.log(json))
+            .then(json => alert(json.message))
     }
 
 }

@@ -13,6 +13,8 @@ const editButton = document.querySelector('#editButton')
 const saveButton = document.querySelector('#saveButton')
 const deleteButton = document.querySelector('#deleteButton')
 
+const jumbotron = document.querySelector('.jumbotron')
+
 newStory.addEventListener('click', () => {
     document.querySelector('#new-story-form').removeAttribute('hidden')
     newStoryForm.addEventListener('submit', (event) => {
