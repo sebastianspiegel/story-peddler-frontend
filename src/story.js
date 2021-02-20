@@ -48,25 +48,30 @@ class Story{
         title.innerText = this.title
         title.dataset.id = this.id 
         storyInfo.append(title)
-        // document.querySelector('#storyTitle').innerText = this.title
-        // document.querySelector('#storyTitle').dataset.id = this.id 
+
 
         let genre = document.createElement('h6')
         genre.id = "storyGenre"
         genre.innerText = this.genre 
         storyInfo.append(genre)
         storyInfo.append(lineBreak2)
-        // document.querySelector('#storyGenre').innerText = this.genre
 
         let summary = document.createElement('h5')
         summary.id = "storySummary"
         summary.innerText = this.summary
         storyInfo.append(summary)
         storyInfo.append(lineBreak1)
-        // document.querySelector('#storySummary').innerText = this.summary
 
         document.querySelector('#storyCharacters').innerHTML = ""
         characterApi.getCharacters(this.id); 
+
+        let ppList = document.querySelector('#plot-points')
+        ppList.innerHTML = ""
+        let header = document.createElement('li')
+        header.className = "list-group-item list-group-item-action active"
+        header.innerText = "Plot Points:"
+        ppList.append(header)
+        plotpointApi.getPlotPoints(this.id)
 
         this.addButtons();
     }
@@ -134,14 +139,13 @@ class Story{
     }
 
     deleteStory(){
-        storyApi.deleteStory(this.id)
-        jumbotron.setAttribute('hidden', '')
         document.querySelector('.storyInfo').innerHTML = ""
 
         this.removeFromDropdown('#story-list')
         this.removeFromDropdown('#characterStoryInput')
         this.removeFromDropdown('#ppStoryInput')
-
+        storyApi.deleteStory(this.id)
+        jumbotron.setAttribute('hidden', '')
     }
 
     removeFromDropdown(elementID){

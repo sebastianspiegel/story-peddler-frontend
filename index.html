@@ -82,7 +82,7 @@
         <legend>Add new plot point</legend>
         <div class="form-group">
           <label for="exampleTextarea">Description</label>
-          <textarea class="form-control" id="new-pp-description" rows="3"></textarea>
+          <textarea class="form-control" id="desInput" rows="3"></textarea>
         </div>
         <div class="form-group">
           <label for="storySelect">Story</label>
@@ -96,28 +96,25 @@
 
     <div class="jumbotron" hidden="">
       <div class="storyInfo">
-      <!-- <h1 type="text" class="display-3" id="storyTitle"></h1> -->
-      <!-- <h6 class="lead" id="storyGenre"></h6> -->
-      <!-- <hr class="my-4"> -->
-      <!-- <h5 class="lead" id="storySummary"></h5> -->
-      <!-- <hr class="my-4"> -->
     </div>
       <p>Characters:</p>
       <ul class="list-group" id="storyCharacters">
       </ul>
       <hr class="my-4">
       <p class="lead">
-        <div class="list-group" hidden="">
-          <li class="list-group-item list-group-item-action active">Test list for drag and drop</li>
-          <li class="list-group-item list-group-item-action" draggable="true" id="sortable1" ondragover="dragOver(event)" ondragstart="dragStart(event)">One</li>
-          <li class="list-group-item list-group-item-action" draggable="true" id="sortable2" ondragover="dragOver(event)" ondragstart="dragStart(event)">Two</li>
-          <li class="list-group-item list-group-item-action" draggable="true" id="sortable3" ondragover="dragOver(event)" ondragstart="dragStart(event)">Three</li>
+        <div class="list-group">
+          <ol id="plot-points">
+            <li class="list-group-item list-group-item-action active">Plot Points:</li>
+            <!-- <li class="list-group-item list-group-item-action" draggable="true" id="sortable3" ondragover="dragOver(event)" ondragstart="dragStart(event)">Example</li> -->
+          </ol>
         </div>
       </p>
       <div class="buttons"></div>
     </div>
 
     <!-- <script type="text/javascript" src="node_modules/html5sortable/dist/html5sortable.js"></script> -->
+    <script type="text/javascript" src="src/plotpoint.js"></script>
+    <script type="text/javascript" src="src/plotpointAPI.js"></script>
     <script type="text/javascript" src="src/character.js"></script>
     <script type="text/javascript" src="src/characterAPI.js"></script>
     <script type="text/javascript" src="src/story.js"></script>
