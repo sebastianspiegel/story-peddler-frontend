@@ -67,11 +67,14 @@ class Character {
         char.append(charEdit)
         char.append(charDelete)
 
-        document.getElementById('editButton').addEventListener('click', () => {
-            this.showButtons();
-        })
-        document.getElementById('saveButton').addEventListener('click', () => {
-            this.hideButtons();
+        //glitch: this function is only being called the first time before reappending the dom? 
+        let editButton = document.getElementById('editButton')
+        editButton.addEventListener('click', () => {
+            if (editButton.innerText === "Save") {
+                this.showButtons();
+            } else {
+                this.hideButtons();
+            }
         })
     }
 
@@ -84,7 +87,9 @@ class Character {
             charEdit.innerText = "Save"
             charEdit.className = "btn btn-outline-success btn-sm"
             name.outerHTML = `<input type="text" class="mb-1" id="${this.id}-editName" value="${this.name}">`
-            des.outerHTML = `<input type="text" rows="3" id="${this.id}-editDes" value="${this.description}">`
+            des.outerHTML = `<input size="75" type="text" id="${this.id}-editDes" value="${this.description}">`
+            // des.outerHTML = `<textarea rows="3" type="text" id="${this.id}-editDes">`
+            // des.innerHTML = this.description
         } else {
             charEdit.className = "btn btn-outline-primary btn-sm"
             charEdit.innerText = "Edit"

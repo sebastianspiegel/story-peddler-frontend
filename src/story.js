@@ -100,7 +100,7 @@ class Story{
     addButtons(){
         buttons.innerHTML = ""
         this.editButton()
-        this.saveButton()
+        // this.saveButton()
         this.deleteButton()   
     }
 
@@ -112,18 +112,21 @@ class Story{
         editButton.innerText = "Edit"
         buttons.append(editButton)
         editButton.addEventListener('click', () => {
-            this.editStory();
+            if(editButton.innerText === "Edit"){
+                editButton.className = "btn btn-outline-success"
+                editButton.innerText = "Save"
+                console.log('edit hit in story.js')
+                this.editStory();
+            } else {
+                editButton.className = "btn btn-outline-primary"
+                editButton.innerText = "Edit"
+                let updateTitle = document.querySelector('#storyTitle').value
+                let updateGenre = document.querySelector('#storyGenre').value
+                let updateSummary = document.querySelector('#storySummary').value
+                console.log('save hit in story.js')
+                this.saveEdit(updateTitle, updateGenre, updateSummary)
+            }
         })
-    }
-
-    saveButton(){
-        let saveButton = document.createElement('button')
-        saveButton.className = "btn btn-outline-success"
-        saveButton.id = "saveButton"
-        saveButton.type = "button"
-        saveButton.innerText = "Save"
-        saveButton.setAttribute('hidden', '')
-        buttons.append(saveButton)
     }
 
     deleteButton(){
@@ -141,17 +144,17 @@ class Story{
     }
 
     editStory(){
-        editButton.setAttribute('hidden', '')
-        saveButton.removeAttribute('hidden')
+        // editButton.setAttribute('hidden', '')
+        // saveButton.removeAttribute('hidden')
         document.querySelector('#storyTitle').outerHTML = `<input type="text" class="form-control" value="${this.title}" id="storyTitle">`
         document.querySelector('#storySummary').outerHTML = `<input type="text" class="form-control" rows="3" value="${this.summary}" id="storySummary">`
         document.querySelector('#storyGenre').outerHTML = `<input type="text" class="form-control" value="${this.genre}" id="storyGenre">`
-        saveButton.addEventListener('click', () => {
-            let updateTitle = document.querySelector('#storyTitle').value
-            let updateGenre = document.querySelector('#storyGenre').value
-            let updateSummary = document.querySelector('#storySummary').value
-            this.saveEdit(updateTitle, updateGenre, updateSummary)
-        })
+        // saveButton.addEventListener('click', () => {
+        //     let updateTitle = document.querySelector('#storyTitle').value
+        //     let updateGenre = document.querySelector('#storyGenre').value
+        //     let updateSummary = document.querySelector('#storySummary').value
+        //     this.saveEdit(updateTitle, updateGenre, updateSummary)
+        // })
     }
 
     saveEdit(title, genre, summary){
@@ -160,7 +163,7 @@ class Story{
         this.summary = summary
         editButton.parentNode.removeChild(editButton)
         deleteButton.parentNode.removeChild(deleteButton)
-        saveButton.parentNode.removeChild(saveButton)
+        // saveButton.parentNode.removeChild(saveButton)
         storyApi.sendPatch(this)
 
         this.showStory()
