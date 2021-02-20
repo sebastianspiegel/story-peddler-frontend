@@ -11,6 +11,9 @@ This application was created as part of the software develpment course at Flatir
 After downloading backend and starting the server, navigate into the frontend repo and execute:
 ``` open index.html ```
 
+## Using the application
+To get started with your first story, click "Add new story" in the Nav bar. You can select which story you want to view using the dropdown in the Nav bar, and edit the Title and Details of the story with the edit button. To add Characters and Plot Points you must first create the story they belong to, and keep in mind that this data will be destroyed if you decided to delete a story. To edit a Character, click the edit button on their story. 
+
 ## Development 
 
 This site is currently under development. 
