@@ -47,7 +47,7 @@ class StoryApi {
                 s.addToDropDown('#story-list')
                 s.addToDropDown('#characterStoryInput')
                 s.addToDropDown('#ppStoryInput')
-                s.showStory()
+                s.showAllStory()
             }
         })
     }
@@ -88,10 +88,9 @@ class StoryApi {
             }
         }
 
-        // console.log(`${this.baseURL}/${id}`, configObj)
         fetch(`${this.baseURL}/${id}`, configObj)
-            .then(resp => resp.json())
-            .then(json => alert(json.message))
+        .then(resp => resp.json())
+        .then(json => alert(json.message))
     }
 
 }

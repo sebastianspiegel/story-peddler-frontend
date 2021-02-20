@@ -70,6 +70,9 @@ class Character {
         document.getElementById('editButton').addEventListener('click', () => {
             this.showButtons();
         })
+        document.getElementById('saveButton').addEventListener('click', () => {
+            this.hideButtons();
+        })
     }
 
     editCharacter(event){
@@ -106,6 +109,12 @@ class Character {
         let char = document.getElementById(`${this.name}-${this.story_id}`)
         char.children[2].removeAttribute('hidden')
         char.children[3].removeAttribute('hidden')
+    }
+
+    hideButtons(){
+        let char = document.getElementById(`${this.name}-${this.story_id}`)
+        char.children[2].setAttribute('hidden', '')
+        char.children[3].setAttribute('hidden', '')
     }
 
     deleteCharacter(){

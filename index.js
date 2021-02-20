@@ -12,6 +12,7 @@ const newPP = document.querySelector('#new-pp-button')
 const newPPForm = document.querySelector('#new-pp-form')
 
 const jumbotron = document.querySelector('.jumbotron')
+const storyInfo = document.querySelector('.storyInfo')
 const buttons = document.querySelector('.buttons')
 
 newStory.addEventListener('click', () => {

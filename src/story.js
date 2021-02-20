@@ -25,46 +25,69 @@ class Story{
             let storyId = event.target.value
             for(const story of Story.all){
                 if(story.id === storyId){
-                    story.showStory()
+                    story.showAllStory()
                 }
             }
         })
     }
 
-    showStory(){
-        //MAKE SEPERATE FUNCTIONS 
+    showAllStory(){
         jumbotron.removeAttribute('hidden')
+        
+        this.showStory()
+
+        this.storyCharacters()
+        this.storyPlotPoints()
+
+        this.addButtons();
+    }
+
+    showStory(){
+        jumbotron.removeAttribute('hidden')
+
         let lineBreak1 = document.createElement('hr')
         lineBreak1.className = "my-4"
         let lineBreak2 = document.createElement('hr')
         lineBreak2.className = "my-4"
-        let storyInfo = document.querySelector('.storyInfo')
 
         storyInfo.innerHTML = ""
 
+        this.storyTitle()
+        this.storyGenre()
+        storyInfo.append(lineBreak2)
+        this.storySummary()
+        storyInfo.append(lineBreak1)
+    }
+
+    storyTitle(){
         let title = document.createElement('h1')
         title.className = "display-3"
         title.id = "storyTitle"
         title.innerText = this.title
         title.dataset.id = this.id 
         storyInfo.append(title)
+    }
 
-
+    storyGenre(){
         let genre = document.createElement('h6')
         genre.id = "storyGenre"
         genre.innerText = this.genre 
         storyInfo.append(genre)
-        storyInfo.append(lineBreak2)
+    }
 
+    storySummary(){
         let summary = document.createElement('h5')
         summary.id = "storySummary"
         summary.innerText = this.summary
         storyInfo.append(summary)
-        storyInfo.append(lineBreak1)
+    }
 
+    storyCharacters(){
         document.querySelector('#storyCharacters').innerHTML = ""
         characterApi.getCharacters(this.id); 
+    }
 
+    storyPlotPoints(){
         let ppList = document.querySelector('#plot-points')
         ppList.innerHTML = ""
         let header = document.createElement('li')
@@ -72,13 +95,16 @@ class Story{
         header.innerText = "Plot Points:"
         ppList.append(header)
         plotpointApi.getPlotPoints(this.id)
-
-        this.addButtons();
     }
 
     addButtons(){
         buttons.innerHTML = ""
+        this.editButton()
+        this.saveButton()
+        this.deleteButton()   
+    }
 
+    editButton(){
         let editButton = document.createElement('button')
         editButton.className = "btn btn-outline-primary"
         editButton.id = "editButton"
@@ -88,7 +114,9 @@ class Story{
         editButton.addEventListener('click', () => {
             this.editStory();
         })
+    }
 
+    saveButton(){
         let saveButton = document.createElement('button')
         saveButton.className = "btn btn-outline-success"
         saveButton.id = "saveButton"
@@ -96,8 +124,9 @@ class Story{
         saveButton.innerText = "Save"
         saveButton.setAttribute('hidden', '')
         buttons.append(saveButton)
+    }
 
-
+    deleteButton(){
         let deleteButton = document.createElement('button')
         deleteButton.className = "btn btn-outline-danger"
         deleteButton.id = "deleteButton"
@@ -118,11 +147,9 @@ class Story{
         document.querySelector('#storySummary').outerHTML = `<input type="text" class="form-control" rows="3" value="${this.summary}" id="storySummary">`
         document.querySelector('#storyGenre').outerHTML = `<input type="text" class="form-control" value="${this.genre}" id="storyGenre">`
         saveButton.addEventListener('click', () => {
-            // this.showStory()
             let updateTitle = document.querySelector('#storyTitle').value
             let updateGenre = document.querySelector('#storyGenre').value
             let updateSummary = document.querySelector('#storySummary').value
-            // console.log(updateTitle, updateGenre, updateSummary)
             this.saveEdit(updateTitle, updateGenre, updateSummary)
         })
     }
@@ -135,7 +162,9 @@ class Story{
         deleteButton.parentNode.removeChild(deleteButton)
         saveButton.parentNode.removeChild(saveButton)
         storyApi.sendPatch(this)
+
         this.showStory()
+        this.addButtons()
     }
 
     deleteStory(){
