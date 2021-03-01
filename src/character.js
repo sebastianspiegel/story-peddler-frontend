@@ -72,8 +72,10 @@ class Character {
         editButton.addEventListener('click', () => {
             if (editButton.innerText === "Save") {
                 this.showButtons();
+                console.log('show character edit')
             } else {
                 this.hideButtons();
+                console.log('hide character edit')
             }
         })
     }

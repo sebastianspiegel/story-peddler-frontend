@@ -16,13 +16,16 @@ class PlotPoint {
         let pp = document.createElement('li')
         pp.innerText = this.description
         pp.className = "list-group-item d-flex justify-content-between align-items-center"
+        pp.setAttribute('dragable', 'true')
+        pp.setAttribute('ondragover', 'dragOver(event)')
+        pp.setAttribute('ondragstart', 'dragStart(event)')
         pp.setAttribute('draggable', 'true')
-
-        let num = document.createElement('span')
-        num.className = "badge badge-primary badge-pill"
-        num.innerText = this.order
-
         ppList.append(pp)
-        pp.append(num)
+
+        // For order:
+        // let num = document.createElement('span')
+        // num.className = "badge badge-primary badge-pill"
+        // num.innerText = this.order
+        // pp.append(num)
     }
 }

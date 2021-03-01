@@ -100,7 +100,6 @@ class Story{
     addButtons(){
         buttons.innerHTML = ""
         this.editButton()
-        // this.saveButton()
         this.deleteButton()   
     }
 
