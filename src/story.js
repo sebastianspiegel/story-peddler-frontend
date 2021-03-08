@@ -114,7 +114,7 @@ class Story{
             if(editButton.innerText === "Edit"){
                 editButton.className = "btn btn-outline-success"
                 editButton.innerText = "Save"
-                console.log('edit hit in story.js')
+                // console.log('edit hit in story.js')
                 this.editStory();
             } else {
                 editButton.className = "btn btn-outline-primary"
@@ -122,7 +122,7 @@ class Story{
                 let updateTitle = document.querySelector('#storyTitle').value
                 let updateGenre = document.querySelector('#storyGenre').value
                 let updateSummary = document.querySelector('#storySummary').value
-                console.log('save hit in story.js')
+                // console.log('save hit in story.js')
                 this.saveEdit(updateTitle, updateGenre, updateSummary)
             }
         })
@@ -143,17 +143,9 @@ class Story{
     }
 
     editStory(){
-        // editButton.setAttribute('hidden', '')
-        // saveButton.removeAttribute('hidden')
         document.querySelector('#storyTitle').outerHTML = `<input type="text" class="form-control" value="${this.title}" id="storyTitle">`
         document.querySelector('#storySummary').outerHTML = `<input type="text" class="form-control" rows="3" value="${this.summary}" id="storySummary">`
         document.querySelector('#storyGenre').outerHTML = `<input type="text" class="form-control" value="${this.genre}" id="storyGenre">`
-        // saveButton.addEventListener('click', () => {
-        //     let updateTitle = document.querySelector('#storyTitle').value
-        //     let updateGenre = document.querySelector('#storyGenre').value
-        //     let updateSummary = document.querySelector('#storySummary').value
-        //     this.saveEdit(updateTitle, updateGenre, updateSummary)
-        // })
     }
 
     saveEdit(title, genre, summary){
@@ -162,7 +154,6 @@ class Story{
         this.summary = summary
         editButton.parentNode.removeChild(editButton)
         deleteButton.parentNode.removeChild(deleteButton)
-        // saveButton.parentNode.removeChild(saveButton)
         storyApi.sendPatch(this)
 
         this.showStory()

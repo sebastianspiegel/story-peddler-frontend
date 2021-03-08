@@ -67,15 +67,15 @@ class Character {
         char.append(charEdit)
         char.append(charDelete)
 
-        //glitch: this function is only being called the first time before reappending the dom? 
+        //this function is only being called the first time before reappending the dom? 
         let editButton = document.getElementById('editButton')
         editButton.addEventListener('click', () => {
             if (editButton.innerText === "Save") {
                 this.showButtons();
-                console.log('show character edit')
+                // console.log('show character edit')
             } else {
                 this.hideButtons();
-                console.log('hide character edit')
+                // console.log('hide character edit')
             }
         })
     }

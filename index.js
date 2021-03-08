@@ -1,4 +1,4 @@
-const port = `http://localhost:3000`
+const port = `https://afternoon-scrubland-00791.herokuapp.com/`
 
 const storyApi =  new StoryApi(port)
 const characterApi = new CharacterApi(port)

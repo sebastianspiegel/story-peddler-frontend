@@ -57,7 +57,7 @@ class CharacterApi {
             description,
             story_id
         }
-        // debugger
+        
         const configObj = {
             method: 'PATCH',
             headers: {

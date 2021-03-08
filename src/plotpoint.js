@@ -23,9 +23,9 @@ class PlotPoint {
         ppList.append(pp)
 
         // For order:
-        // let num = document.createElement('span')
-        // num.className = "badge badge-primary badge-pill"
-        // num.innerText = this.order
-        // pp.append(num)
+        let num = document.createElement('span')
+        num.className = "badge badge-primary badge-pill"
+        num.innerText = this.order
+        pp.append(num)
     }
 }
